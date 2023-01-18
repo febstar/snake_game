@@ -30,7 +30,12 @@ class Snake:
     def extend(self):
         self.add_seg(self.lists[-1].position())
 
-
+    def reset(self):
+        for seg in self.lists:
+            seg.goto(1000, 1000)
+        self.lists.clear()
+        self.create_snake()
+        self.head = self.lists[0]
     def move(self):
         for seg_num in range(len(self.lists) - 1, 0, -1):
             new_x = self.lists[seg_num - 1].xcor()
