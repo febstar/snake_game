@@ -10,12 +10,16 @@ class Scoreboard(Turtle):
         self.highscore = 0
         self.penup()
         self.goto(0, 250)
-        self.score = 0
-        self.write(f"Score: {self.score}", move=False, align='center', font=('Arial', 20, 'normal'))
+        with open("data.txt") as file:
+            self.score = 0
+            self.highscore = int(file.read())
+            self.write(f"Score: {self.score} Highscore: {self.highscore}", move=False, align='center', font=('Arial', 20, 'normal'))
 
     def reset(self):
         if self.score > self.highscore:
             self.highscore = self.score
+            with open("data.txt", mode="w") as file:
+                file.write(f"{self.highscore}")
         self.score = 0
 
     # def game_over(self):
